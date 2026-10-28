@@ -11,21 +11,29 @@ partial class AppDbContextModelSnapshot : ModelSnapshot
         modelBuilder.HasAnnotation("ProductVersion", "10.0.12");
 
         modelBuilder.Entity("API.Entities.AppUser", b =>
-            {
-                b.Property<string>("Id")
-                    .HasColumnType("TEXT");
+        {
+            b.Property<string>("Id")
+                .HasColumnType("TEXT");
 
-                b.Property<string>("DisplayName")
-                    .IsRequired()
-                    .HasColumnType("TEXT");
+            b.Property<string>("DisplayName")
+                .IsRequired()
+                .HasColumnType("TEXT");
 
-                b.Property<string>("Email")
-                    .IsRequired()
-                    .HasColumnType("TEXT");
+            b.Property<string>("Email")
+                .IsRequired()
+                .HasColumnType("TEXT");
 
-                b.HasKey("Id");
+            b.Property<byte[]>("PasswordHash")
+                .IsRequired()
+                .HasColumnType("BLOB");
 
-                b.ToTable("Users");
-            });
+            b.Property<byte[]>("PasswordSalt")
+                .IsRequired()
+                .HasColumnType("BLOB");
+
+            b.HasKey("Id");
+
+            b.ToTable("Users");
+        });
     }
 }
