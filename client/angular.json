@@ -10,27 +10,35 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {
+          "path": "src",
           "skipTests": true
         },
         "@schematics/angular:component": {
+          "path": "src",
           "skipTests": true
         },
         "@schematics/angular:directive": {
+          "path": "src",
           "skipTests": true
         },
         "@schematics/angular:guard": {
+          "path": "src",
           "skipTests": true
         },
         "@schematics/angular:interceptor": {
+          "path": "src",
           "skipTests": true
         },
         "@schematics/angular:pipe": {
+          "path": "src",
           "skipTests": true
         },
         "@schematics/angular:resolver": {
+          "path": "src",
           "skipTests": true
         },
         "@schematics/angular:service": {
+          "path": "src/core/services",
           "skipTests": true
         }
       },
