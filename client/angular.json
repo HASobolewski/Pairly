@@ -22,7 +22,7 @@
           "skipTests": true
         },
         "@schematics/angular:guard": {
-          "path": "src",
+          "path": "src/core/guards",
           "skipTests": true
         },
         "@schematics/angular:interceptor": {

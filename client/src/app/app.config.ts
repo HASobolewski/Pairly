@@ -1,8 +1,35 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {
+  ApplicationConfig,
+  inject,
+  provideAppInitializer,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
+import { provideRouter, withViewTransitions } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
+import { InitService } from '../core/services/init-service';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideBrowserGlobalErrorListeners(), provideHttpClient(), provideRouter(routes)],
+  providers: [
+    provideAppInitializer(async () => {
+      const initService = inject(InitService);
+      return new Promise<void>((resolve) =>
+        setTimeout(async () => {
+          try {
+            return lastValueFrom(initService.init());
+          } finally {
+            const splash = document.getElementById('initial-splash');
+            if (splash) {
+              splash.remove();
+            }
+            resolve();
+          }
+        }, 500),
+      );
+    }),
+    provideBrowserGlobalErrorListeners(),
+    provideHttpClient(),
+    provideRouter(routes, withViewTransitions()),
+  ],
 };
